@@ -19,7 +19,10 @@ export default {
   },
   methods: {
     changeTitle: function () {
-      this.title = "Vue Wizards"
+      // this.title = "Vue Wizards"
+      this.$emit('changeTitle', 'Vue Wizards');
+      // this.$emit(...)을 쓰는 경우 => child to parent
+      // 이벤트를 상위로 올려준다? 
     }
   }
 };
