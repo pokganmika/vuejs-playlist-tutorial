@@ -1,7 +1,10 @@
 <template>
-  <ul>
-    <li v-for="character in characters" :key="character">{{ character }}</li>
-  </ul>
+  <div>
+    <h1>List of Characters</h1>
+    <ul>
+      <li v-for="character in characters" :key="character">{{ character }}</li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -15,4 +18,7 @@ export default {
 </script>
 
 <style>
+h1 {
+  color: green;
+}
 </style>

@@ -25,5 +25,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+h1 {
+  color: orange;
+}
+/*
+하위 컴포넌트의 CSS 영향을 우선적으로 받게 되는데 
+하위 컴포넌트의 영향을 받지 않기 위해서는 scoped를 넣어줘야 한다
+*/
 </style>
