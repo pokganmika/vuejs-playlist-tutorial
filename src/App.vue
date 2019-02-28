@@ -1,36 +1,27 @@
 <template>
-  <div id="app">
-    <h1>{{ title }}</h1>
-    <characters></characters>
+  <div>
+    <app-header></app-header>
+    <app-article></app-article>
+    <app-footer></app-footer>
   </div>
 </template>
 
 <script>
-import Test from "./Test";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Article from "./components/Article";
 
 export default {
   components: {
-    characters: Test
+    "app-header": Header,
+    "app-footer": Footer,
+    "app-article": Article
   },
-  // data() {
-  //   return {
-  //     title: "first Vue file"
-  //   };
-  // },
-  data: function() {
-    return {
-      title: "Test App"
-    };
+  data() {
+    return {};
   }
 };
 </script>
 
-<style scoped>
-h1 {
-  color: orange;
-}
-/*
-하위 컴포넌트의 CSS 영향을 우선적으로 받게 되는데 
-하위 컴포넌트의 영향을 받지 않기 위해서는 scoped를 넣어줘야 한다
-*/
+<style>
 </style>
