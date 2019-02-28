@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-header v-bind:title="title"></app-header>
+    <app-header v-bind:title="title" v-on:changeTitle="updateTitle($event)"></app-header>
     <app-article v-bind:characters="characters"></app-article>
     <app-footer v-bind:title="title"></app-footer>
   </div>
@@ -29,6 +29,12 @@ export default {
       ],
       title: "Vue Character"
     };
+  },
+  methods: {
+    updateTitle: function (updatedTitle) {
+      this.title = updatedTitle;
+      // updatedTitle => 하위 컴포넌트에서 보내주는 값
+    }
   }
 };
 </script>
