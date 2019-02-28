@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import { bus } from '../main';
+
 export default {
   props: {
     title: {
@@ -20,9 +22,13 @@ export default {
   methods: {
     changeTitle: function () {
       // this.title = "Vue Wizards"
-      this.$emit('changeTitle', 'Vue Wizards');
+
+      // this.$emit('changeTitle', 'Vue Wizards');
       // this.$emit(...)을 쓰는 경우 => child to parent
       // 이벤트를 상위로 올려준다? 
+
+      this.title = 'Vue Wizards'; // 이 코드를 입력 안해줄 경우 Footer만 변한다!!
+      bus.$emit('titleChanged', 'Vue Wizards');
     }
   }
 };
