@@ -1,12 +1,17 @@
 <template>
   <div id="app">
     <h1>{{ title }}</h1>
-    <p>{{ greeting() }}</p>
+    <characters></characters>
   </div>
 </template>
 
 <script>
+import Test from "./Test";
+
 export default {
+  components: {
+    characters: Test
+  },
   // data() {
   //   return {
   //     title: "first Vue file"
@@ -14,13 +19,8 @@ export default {
   // },
   data: function() {
     return {
-      title: "first Vue file"
+      title: "Test App"
     };
-  },
-  methods: {
-    greeting: function() {
-      return "Hello World";
-    }
   }
 };
 </script>
