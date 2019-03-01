@@ -1,7 +1,7 @@
 <template>
   <div id="add-blog">
     <h2>Add a New Blog Post</h2>
-    <form>
+    <form v-if="!submitted">
       <label>Blog Title:</label>
       <!-- <input type="text" v-model="title" required> -->
       <!-- <input type="text" v-model="blog.title" required> -->
@@ -10,23 +10,29 @@
       <!-- <textarea v-model="content"></textarea> -->
       <!-- <textarea v-model="blog.content"></textarea> -->
       <textarea v-model.lazy="blog.content"></textarea>
+
+      <div id="checkboxes">
+        <label>Knight</label>
+        <input type="checkbox" value="knight" v-model="blog.categories">
+        <label>Wizard</label>
+        <input type="checkbox" value="wizard" v-model="blog.categories">
+        <label>Warrior</label>
+        <input type="checkbox" value="warrior" v-model="blog.categories">
+        <label>Thief</label>
+        <input type="checkbox" value="thief" v-model="blog.categories">
+      </div>
+
+      <label>Author:</label>
+      <select v-model="blog.author">
+        <option v-for="author in authors" :key="author">{{ author }}</option>
+      </select>
+      
+      <button v-on:click.prevent="post">Add Blog</button>
     </form>
 
-    <div id="checkboxes">
-      <label>Knight</label>
-      <input type="checkbox" value="knight" v-model="blog.categories">
-      <label>Wizard</label>
-      <input type="checkbox" value="wizard" v-model="blog.categories">
-      <label>Warrior</label>
-      <input type="checkbox" value="warrior" v-model="blog.categories">
-      <label>Thief</label>
-      <input type="checkbox" value="thief" v-model="blog.categories">
+    <div v-if="submitted">
+      <h3>Thanks for addingyour post</h3>
     </div>
-
-    <label>Author:</label>
-    <select v-model="blog.author">
-      <option v-for="author in authors" :key="author">{{ author }}</option>
-    </select>
 
     <div id="preview">
       <h3>Preview blog</h3>
@@ -58,10 +64,24 @@ export default {
         categories: [],
         author: ""
       },
-      authors: ["The Net Ninja", "The Angular Avenger", "The Vue Vindicator "]
+      authors: ["The Net Ninja", "The Angular Avenger", "The Vue Vindicator "],
+      submitted: false
     };
   },
-  methods: {}
+  methods: {
+    post: function() {
+      this.$http
+        .post("http://jsonplaceholder.typicode.com/posts", {
+          title: this.blog.title,
+          body: this.blog.content,
+          userID: 1
+        })
+        .then(data => {
+          console.log(data);
+          this.submitted = true;
+        });
+    }
+  }
 };
 </script>
 
