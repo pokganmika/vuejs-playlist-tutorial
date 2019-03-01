@@ -11,6 +11,18 @@
       <!-- <textarea v-model="blog.content"></textarea> -->
       <textarea v-model.lazy="blog.content"></textarea>
     </form>
+
+    <div id="checkboxes">
+      <label>Knight</label>
+      <input type="checkbox" value="knight" v-model="blog.categories">
+      <label>Wizard</label>
+      <input type="checkbox" value="wizard" v-model="blog.categories">
+      <label>Warrior</label>
+      <input type="checkbox" value="warrior" v-model="blog.categories">
+      <label>Thief</label>
+      <input type="checkbox" value="thief" v-model="blog.categories">
+    </div>
+
     <div id="preview">
       <h3>Preview blog</h3>
       <!-- <p>Blog title: {{ title }}</p> -->
@@ -18,6 +30,11 @@
       <!-- <p>Blog content: {{ content }}</p> -->
       <p>Blog content:</p>
       <p>{{ blog.content }}</p>
+
+      <p>Blog Categories</p>
+      <ul>
+        <li v-for="category in blog.categories" :key="category">{{ category }}</li>
+      </ul>
     </div>
   </div>
 </template>
@@ -30,7 +47,8 @@ export default {
       // content: ""
       blog: {
         title: "",
-        content: ""
+        content: "",
+        categories: []
       }
     };
   },
@@ -63,5 +81,12 @@ textarea {
 }
 h3 {
   margin-top: 10px;
+}
+#checkboxes input {
+  display: inline-block;
+  margin-right: 10px;
+}
+#checkboxes label {
+  display: inline-block;
 }
 </style>
